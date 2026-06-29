@@ -1,1 +1,77 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "RED SERVCOM",
+    "theme_version": "1.0.0",
+    "theme_author": "RED SERVCOM",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colores",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Color primario",
+        "default": "#e63946"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Color secundario",
+        "default": "#1d3557"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Color de fondo",
+        "default": "#0a0e1a"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Color de texto",
+        "default": "#f1f5f9"
+      }
+    ]
+  },
+  {
+    "name": "Tipografía",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Fuente de títulos",
+        "default": "rajdhani_n6"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Fuente del cuerpo",
+        "default": "inter_n4"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Se recomienda 32×32px"
+      }
+    ]
+  },
+  {
+    "name": "Redes Sociales",
+    "settings": [
+      { "type": "url",  "id": "social_facebook",  "label": "Facebook" },
+      { "type": "url",  "id": "social_instagram", "label": "Instagram" },
+      { "type": "text", "id": "social_whatsapp",  "label": "WhatsApp (número)" },
+      { "type": "url",  "id": "social_youtube",   "label": "YouTube" },
+      { "type": "url",  "id": "social_tiktok",    "label": "TikTok" }
+    ]
+  }
+]
