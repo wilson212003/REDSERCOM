@@ -15,7 +15,7 @@
     "trust-strip": {
       "type": "trust-strip",
       "settings": {
-        "icon_1": "🚚", "text_1": "Envío Gratis",     "sub_1": "En pedidos +$500 MXN",
+        "icon_1": "🚚", "text_1": "Envío Gratis",     "sub_1": "En pedidos +S/50",
         "icon_2": "🛡️", "text_2": "Garantía Oficial", "sub_2": "Productos 100% originales",
         "icon_3": "💳", "text_3": "Pago Seguro",       "sub_3": "Visa, MasterCard, OXXO, SPEI",
         "icon_4": "🛠️", "text_4": "Soporte Técnico",  "sub_4": "Lun–Dom, 9am–8pm"
