@@ -1,0 +1,32 @@
+{% if section.settings.show_bar %}
+<div class="topbar">
+  {{ section.settings.text | default: '🚀 Envío GRATIS en compras mayores a $500 MXN &nbsp;|&nbsp; ☎️ Soporte técnico 7 días &nbsp;|&nbsp; 🔒 Compra 100% segura' }}
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Barra de Anuncio",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "Mostrar barra",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto del anuncio",
+      "default": "<p>🚀 Envío GRATIS en compras mayores a $500 MXN | ☎️ Soporte técnico 7 días | 🔒 Compra 100% segura</p>"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Color de fondo",
+      "default": "#e63946"
+    }
+  ],
+  "presets": [{ "name": "Barra de Anuncio" }]
+}
+{% endschema %}

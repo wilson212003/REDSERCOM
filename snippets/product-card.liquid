@@ -1,0 +1,76 @@
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+<div class="product-card">
+
+  {% if product.available == false %}
+    <span class="product-badge" style="background:#666;">Agotado</span>
+  {% elsif on_sale %}
+    <span class="product-badge sale">Sale</span>
+  {% elsif product.created_at > 'now' | date: '%s' | minus: 2592000 | date: '%Y-%m-%dT%H:%M:%SZ' %}
+    <span class="product-badge new">Nuevo</span>
+  {% endif %}
+
+  <button class="product-wishlist" aria-label="Agregar a favoritos">♡</button>
+
+  <a href="{{ product.url }}" class="product-img">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | img_url: '400x' }}"
+        alt="{{ product.featured_image.alt | default: product.title }}"
+        loading="lazy"
+        width="400"
+      >
+    {% else %}
+      💻
+    {% endif %}
+  </a>
+
+  <div class="product-body">
+    <div class="product-category">{{ product.type }}</div>
+
+    <a href="{{ product.url }}" class="product-name" style="display:block;text-decoration:none;color:inherit;">
+      {{ product.title }}
+    </a>
+
+    {% if product.metafields.specs.tags != blank %}
+      <div class="product-specs">
+        {% assign spec_tags = product.metafields.specs.tags | split: ',' %}
+        {% for tag in spec_tags limit: 3 %}
+          <span class="spec-tag">{{ tag | strip }}</span>
+        {% endfor %}
+      </div>
+    {% elsif product.tags.size > 0 %}
+      <div class="product-specs">
+        {% for tag in product.tags limit: 3 %}
+          <span class="spec-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="product-footer">
+      <div class="product-price">
+        <span class="price-current">{{ product.price | money }}</span>
+        {% if on_sale %}
+          <span class="price-old">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+      </div>
+
+      {% if product.available %}
+        <button
+          class="add-to-cart-btn"
+          data-variant-id="{{ product.first_available_variant.id }}"
+        >
+          + Carrito
+        </button>
+      {% else %}
+        <button class="add-to-cart-btn" disabled style="opacity:0.5;cursor:not-allowed;">
+          Agotado
+        </button>
+      {% endif %}
+    </div>
+  </div>
+
+</div>

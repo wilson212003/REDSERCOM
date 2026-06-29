@@ -1,0 +1,30 @@
+<section class="section">
+  <div class="section-inner">
+    <div class="promo-banner">
+      <div class="promo-content">
+        <div class="promo-badge">{{ section.settings.badge | default: '🔥 OFERTA ESPECIAL' }}</div>
+        <h2 class="promo-title">{{ section.settings.title | default: 'Hasta 30% OFF en<br>componentes seleccionados' }}</h2>
+        <p class="promo-desc">{{ section.settings.desc | default: 'Armá tu PC gaming o workstation al mejor precio. Válido hasta agotar existencias.' }}</p>
+      </div>
+      <div class="promo-cta">
+        <a href="{{ section.settings.url | default: '/collections/ofertas' }}" class="btn-white">
+          {{ section.settings.cta | default: 'Ver Ofertas' }} →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Banner Promocional",
+  "settings": [
+    { "type": "text",     "id": "badge",  "label": "Badge",       "default": "🔥 OFERTA ESPECIAL" },
+    { "type": "richtext", "id": "title",  "label": "Título",      "default": "<p>Hasta 30% OFF en componentes seleccionados</p>" },
+    { "type": "text",     "id": "desc",   "label": "Descripción", "default": "Armá tu PC gaming o workstation al mejor precio. Válido hasta agotar existencias." },
+    { "type": "text",     "id": "cta",    "label": "Botón",       "default": "Ver Ofertas" },
+    { "type": "url",      "id": "url",    "label": "Enlace" }
+  ],
+  "presets": [{ "name": "Banner Promocional" }]
+}
+{% endschema %}

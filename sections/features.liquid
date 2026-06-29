@@ -1,0 +1,65 @@
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-header">
+      <div>
+        <div class="section-label">{{ section.settings.label | default: '¿Por qué elegirnos?' }}</div>
+        <h2 class="section-title">{{ section.settings.title | default: 'Tu aliado en tecnología' }}</h2>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      {% for block in section.blocks %}
+        <div class="feature-card" {{ block.shopify_attributes }}>
+          <div class="feature-icon">{{ block.settings.icon }}</div>
+          <div class="feature-title">{{ block.settings.title }}</div>
+          <div class="feature-desc">{{ block.settings.desc }}</div>
+        </div>
+      {% else %}
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <div class="feature-title">Productos 100% Originales</div>
+          <div class="feature-desc">Trabajamos directamente con distribuidores autorizados. Garantía de fábrica en todos los productos.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <div class="feature-title">Envío Rápido</div>
+          <div class="feature-desc">Entrega en 24–72 hrs en zonas metropolitanas. Rastreo en tiempo real de tu pedido.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛠️</div>
+          <div class="feature-title">Asesoría Técnica</div>
+          <div class="feature-desc">Nuestros especialistas te ayudan a elegir los componentes ideales para tu proyecto o presupuesto.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <div class="feature-title">Devoluciones Fáciles</div>
+          <div class="feature-desc">30 días para cambios o devoluciones sin complicaciones. Tu satisfacción es nuestra prioridad.</div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Características",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Etiqueta", "default": "¿Por qué elegirnos?" },
+    { "type": "text", "id": "title", "label": "Título",   "default": "Tu aliado en tecnología" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Característica",
+      "settings": [
+        { "type": "text",     "id": "icon",  "label": "Ícono",       "default": "⭐" },
+        { "type": "text",     "id": "title", "label": "Título",      "default": "Característica" },
+        { "type": "textarea", "id": "desc",  "label": "Descripción", "default": "Descripción de la característica." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Características" }]
+}
+{% endschema %}

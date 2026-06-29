@@ -1,0 +1,43 @@
+<section class="section">
+  <div class="section-inner">
+    <div class="newsletter">
+      <div class="section-label">{{ section.settings.label | default: 'Mantente al día' }}</div>
+      <h2 class="newsletter-title">{{ section.settings.title | default: 'Suscríbete y recibe ofertas exclusivas' }}</h2>
+      <p class="newsletter-desc">{{ section.settings.desc | default: 'Sé el primero en conocer nuevos productos, promociones y lanzamientos. Sin spam, solo tecnología.' }}</p>
+
+      {% form 'customer', id: 'newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter,red-servcom">
+        <div class="newsletter-form">
+          <input
+            type="email"
+            name="contact[email]"
+            class="newsletter-input"
+            placeholder="{{ section.settings.placeholder | default: 'tu@correo.com' }}"
+            required
+            aria-label="Correo electrónico"
+          >
+          <button type="submit" class="newsletter-btn">
+            {{ section.settings.button | default: 'Suscribirme' }}
+          </button>
+        </div>
+        {% if form.posted_successfully? %}
+          <p style="color:var(--color-success);margin-top:12px;font-size:0.85rem;">✓ ¡Gracias! Ya estás suscrito.</p>
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text",     "id": "label",       "label": "Etiqueta",       "default": "Mantente al día" },
+    { "type": "text",     "id": "title",       "label": "Título",         "default": "Suscríbete y recibe ofertas exclusivas" },
+    { "type": "textarea", "id": "desc",        "label": "Descripción",    "default": "Sé el primero en conocer nuevos productos, promociones y lanzamientos." },
+    { "type": "text",     "id": "placeholder", "label": "Placeholder",    "default": "tu@correo.com" },
+    { "type": "text",     "id": "button",      "label": "Texto del botón","default": "Suscribirme" }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

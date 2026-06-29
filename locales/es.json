@@ -1,0 +1,47 @@
+{
+  "general": {
+    "language": "es",
+    "title_html": "{{ shop.name }}",
+    "search": {
+      "placeholder": "Buscar productos...",
+      "submit": "Buscar",
+      "no_results_html": "Tu búsqueda de <em>\"{{ terms }}\"</em> no produjo resultados."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Agregar al Carrito",
+      "sold_out": "Agotado",
+      "unavailable": "No disponible",
+      "on_sale": "Oferta",
+      "quantity": "Cantidad",
+      "description": "Descripción"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Carrito de Compras",
+      "empty": "Tu carrito está vacío",
+      "subtotal": "Subtotal",
+      "total": "Total",
+      "checkout": "Pagar",
+      "remove": "Eliminar",
+      "update": "Actualizar"
+    }
+  },
+  "customer": {
+    "login": {
+      "title": "Iniciar Sesión",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Iniciar Sesión"
+    },
+    "account": {
+      "title": "Mi Cuenta"
+    }
+  },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Siguiente"
+  }
+}

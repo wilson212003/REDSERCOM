@@ -1,0 +1,77 @@
+{% paginate collection.products by 24 %}
+
+<div class="section">
+  <div class="section-inner">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" style="margin-bottom:24px;font-size:0.82rem;color:var(--color-text-muted);">
+      <a href="{{ routes.root_url }}" style="color:var(--color-text-muted);text-decoration:none;">Inicio</a>
+      <span style="margin:0 8px;">›</span>
+      <span style="color:var(--color-text);">{{ collection.title }}</span>
+    </nav>
+
+    <!-- Header -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:16px;">
+      <div>
+        <div class="section-label">{{ collection.products_count }} productos</div>
+        <h1 class="section-title">{{ collection.title }}</h1>
+        {% if collection.description != blank %}
+          <p style="color:var(--color-text-muted);font-size:0.85rem;margin-top:8px;max-width:600px;">{{ collection.description }}</p>
+        {% endif %}
+      </div>
+
+      <!-- Ordenar -->
+      <div>
+        <select
+          onchange="window.location.href=this.value"
+          style="background:var(--color-bg-surface);border:1px solid var(--color-border);color:var(--color-text);padding:10px 16px;border-radius:var(--radius);font-size:0.85rem;cursor:pointer;outline:none;"
+          aria-label="Ordenar por"
+        >
+          <option value="{{ collection.url }}?sort_by=manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Destacados</option>
+          <option value="{{ collection.url }}?sort_by=price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Precio: Menor a Mayor</option>
+          <option value="{{ collection.url }}?sort_by=price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Precio: Mayor a Menor</option>
+          <option value="{{ collection.url }}?sort_by=created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Más Recientes</option>
+          <option value="{{ collection.url }}?sort_by=best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>Más Vendidos</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    {% if collection.products.size > 0 %}
+      <div class="products-grid">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div style="text-align:center;padding:80px 24px;color:var(--color-text-muted);">
+        <div style="font-size:4rem;margin-bottom:16px;">📦</div>
+        <h2 style="font-size:1.2rem;color:var(--color-text);margin-bottom:8px;">No hay productos en esta categoría aún</h2>
+        <p>Pronto tendremos stock disponible.</p>
+        <a href="{{ routes.root_url }}" class="btn-primary" style="margin-top:24px;display:inline-block;">Volver al inicio</a>
+      </div>
+    {% endif %}
+
+    <!-- Paginación -->
+    {% if paginate.pages > 1 %}
+      <div style="display:flex;justify-content:center;gap:8px;margin-top:48px;flex-wrap:wrap;">
+        {% if paginate.previous %}
+          <a href="{{ paginate.previous.url }}" class="header-btn">← Anterior</a>
+        {% endif %}
+        {% for part in paginate.parts %}
+          {% if part.is_link %}
+            <a href="{{ part.url }}" class="header-btn" style="{% if part.is_current %}border-color:var(--color-primary);color:var(--color-primary);{% endif %}">{{ part.title }}</a>
+          {% else %}
+            <span class="header-btn" style="cursor:default;">{{ part.title }}</span>
+          {% endif %}
+        {% endfor %}
+        {% if paginate.next %}
+          <a href="{{ paginate.next.url }}" class="header-btn">Siguiente →</a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endpaginate %}

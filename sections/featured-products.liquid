@@ -1,0 +1,92 @@
+<section class="section bg-dark">
+  <div class="section-inner">
+
+    <div class="section-header">
+      <div>
+        <div class="section-label">{{ section.settings.label | default: 'Lo más buscado' }}</div>
+        <h2 class="section-title">{{ section.settings.title | default: 'Productos Destacados' }}</h2>
+      </div>
+      {% if section.settings.collection != blank %}
+        <a href="{{ collections[section.settings.collection].url }}" class="view-all">Ver todos →</a>
+      {% endif %}
+    </div>
+
+    <div class="products-grid">
+      {% assign featured_collection = collections[section.settings.collection] %}
+      {% if featured_collection != blank %}
+        {% for product in featured_collection.products limit: section.settings.products_count %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% else %}
+        <!-- Placeholder cards for theme editor preview -->
+        {% for i in (1..4) %}
+          <div class="product-card">
+            <div class="product-badge">Nuevo</div>
+            <div class="product-img">
+              {% case i %}
+                {% when 1 %}⚡
+                {% when 2 %}🎮
+                {% when 3 %}🧠
+                {% when 4 %}💾
+              {% endcase %}
+            </div>
+            <div class="product-body">
+              <div class="product-category">
+                {% case i %}{% when 1 %}Procesadores{% when 2 %}Tarjetas de Video{% when 3 %}Memorias RAM{% when 4 %}Almacenamiento{% endcase %}
+              </div>
+              <div class="product-name">
+                {% case i %}
+                  {% when 1 %}Intel Core i7-14700K 3.4GHz 20 Núcleos
+                  {% when 2 %}NVIDIA RTX 4070 Super 12GB GDDR6X
+                  {% when 3 %}Corsair Vengeance DDR5 32GB 6000MHz
+                  {% when 4 %}Samsung 990 Pro SSD NVMe 1TB Gen4
+                {% endcase %}
+              </div>
+              <div class="product-specs">
+                {% case i %}
+                  {% when 1 %}<span class="spec-tag">LGA1700</span><span class="spec-tag">125W TDP</span>
+                  {% when 2 %}<span class="spec-tag">DLSS 3</span><span class="spec-tag">PCIe 4.0</span>
+                  {% when 3 %}<span class="spec-tag">2×16GB</span><span class="spec-tag">XMP 3.0</span>
+                  {% when 4 %}<span class="spec-tag">7,450 MB/s</span><span class="spec-tag">M.2</span>
+                {% endcase %}
+              </div>
+              <div class="product-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">({{ i | times: 23 | plus: 10 }})</span>
+              </div>
+              <div class="product-footer">
+                <div class="product-price">
+                  <span class="price-current">
+                    {% case i %}
+                      {% when 1 %}$5,499{% when 2 %}$9,499{% when 3 %}$2,999{% when 4 %}$1,799
+                    {% endcase %}
+                  </span>
+                  <span class="price-old">
+                    {% case i %}
+                      {% when 1 %}$6,199{% when 2 %}$10,499{% when 3 %}$3,499{% when 4 %}$2,199
+                    {% endcase %}
+                  </span>
+                </div>
+                <button class="add-to-cart-btn">+ Carrito</button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Productos Destacados",
+  "settings": [
+    { "type": "text",       "id": "label",          "label": "Etiqueta",       "default": "Lo más buscado" },
+    { "type": "text",       "id": "title",          "label": "Título",         "default": "Productos Destacados" },
+    { "type": "collection", "id": "collection",     "label": "Colección" },
+    { "type": "range",      "id": "products_count", "label": "Nº de productos", "min": 2, "max": 12, "step": 1, "default": 4 }
+  ],
+  "presets": [{ "name": "Productos Destacados" }]
+}
+{% endschema %}

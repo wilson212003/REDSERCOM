@@ -1,0 +1,92 @@
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-header">
+      <div>
+        <div class="section-label">{{ section.settings.label | default: 'Explora por categoría' }}</div>
+        <h2 class="section-title">{{ section.settings.title | default: 'Categorías Principales' }}</h2>
+      </div>
+    </div>
+
+    <div class="categories-grid">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.url }}" class="category-card" {{ block.shopify_attributes }}>
+          <div class="category-icon">{{ block.settings.icon }}</div>
+          <div class="category-name">{{ block.settings.name }}</div>
+          <div class="category-count">{{ block.settings.count }}</div>
+        </a>
+      {% else %}
+        <!-- Default categories -->
+        <a href="/collections/procesadores" class="category-card">
+          <div class="category-icon">⚡</div>
+          <div class="category-name">Procesadores</div>
+          <div class="category-count">Intel & AMD</div>
+        </a>
+        <a href="/collections/tarjetas-de-video" class="category-card">
+          <div class="category-icon">🎮</div>
+          <div class="category-name">Tarjetas de Video</div>
+          <div class="category-count">NVIDIA & AMD</div>
+        </a>
+        <a href="/collections/memorias-ram" class="category-card">
+          <div class="category-icon">🧠</div>
+          <div class="category-name">Memorias RAM</div>
+          <div class="category-count">DDR4 & DDR5</div>
+        </a>
+        <a href="/collections/almacenamiento" class="category-card">
+          <div class="category-icon">💾</div>
+          <div class="category-name">Almacenamiento</div>
+          <div class="category-count">SSD & HDD</div>
+        </a>
+        <a href="/collections/placas-madre" class="category-card">
+          <div class="category-icon">🔌</div>
+          <div class="category-name">Placas Madre</div>
+          <div class="category-count">AM5 & LGA</div>
+        </a>
+        <a href="/collections/fuentes-poder" class="category-card">
+          <div class="category-icon">🔋</div>
+          <div class="category-name">Fuentes de Poder</div>
+          <div class="category-count">80 Plus</div>
+        </a>
+        <a href="/collections/software" class="category-card">
+          <div class="category-icon">💿</div>
+          <div class="category-name">Software</div>
+          <div class="category-count">Licencias originales</div>
+        </a>
+        <a href="/collections/perifericos" class="category-card">
+          <div class="category-icon">🖱️</div>
+          <div class="category-name">Periféricos</div>
+          <div class="category-count">Mouse, Teclado, Monitor</div>
+        </a>
+        <a href="/collections/redes" class="category-card">
+          <div class="category-icon">📡</div>
+          <div class="category-name">Redes</div>
+          <div class="category-count">Routers & Switches</div>
+        </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Categorías",
+  "settings": [
+    { "type": "text", "id": "label",  "label": "Etiqueta superior", "default": "Explora por categoría" },
+    { "type": "text", "id": "title",  "label": "Título de sección",  "default": "Categorías Principales" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoría",
+      "settings": [
+        { "type": "text", "id": "icon",  "label": "Emoji / Ícono", "default": "💻" },
+        { "type": "text", "id": "name",  "label": "Nombre",        "default": "Categoría" },
+        { "type": "text", "id": "count", "label": "Subtexto",      "default": "Ver productos" },
+        { "type": "url",  "id": "url",   "label": "Enlace" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Categorías" }]
+}
+{% endschema %}

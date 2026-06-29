@@ -1,0 +1,125 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-grid">
+
+    <!-- Marca -->
+    <div class="footer-brand">
+      <a href="{{ routes.root_url }}" class="logo" style="display:inline-flex;margin-bottom:0;">
+        <div class="logo-icon">💻</div>
+        <div class="logo-text">
+          <span class="logo-name">RED SERVCOM</span>
+          <span class="logo-tagline">Hardware & Software</span>
+        </div>
+      </a>
+      <p>{{ section.settings.about | default: 'Tu tienda especializada en componentes de computadora, hardware y software original. Asesoría experta y los mejores precios en tecnología.' }}</p>
+      <div class="footer-socials">
+        {% if section.settings.facebook != blank %}
+          <a href="{{ section.settings.facebook }}" class="social-btn" aria-label="Facebook">f</a>
+        {% else %}
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+        {% endif %}
+        {% if section.settings.instagram != blank %}
+          <a href="{{ section.settings.instagram }}" class="social-btn" aria-label="Instagram">📷</a>
+        {% else %}
+          <a href="#" class="social-btn" aria-label="Instagram">📷</a>
+        {% endif %}
+        {% if section.settings.whatsapp != blank %}
+          <a href="https://wa.me/{{ section.settings.whatsapp }}" class="social-btn" aria-label="WhatsApp">💬</a>
+        {% else %}
+          <a href="#" class="social-btn" aria-label="WhatsApp">💬</a>
+        {% endif %}
+        {% if section.settings.youtube != blank %}
+          <a href="{{ section.settings.youtube }}" class="social-btn" aria-label="YouTube">▶</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Categorías -->
+    <div>
+      <h3 class="footer-col-title">Categorías</h3>
+      <ul class="footer-links">
+        <li><a href="/collections/procesadores">⚡ Procesadores</a></li>
+        <li><a href="/collections/tarjetas-de-video">🎮 Tarjetas de Video</a></li>
+        <li><a href="/collections/memorias-ram">🧠 Memorias RAM</a></li>
+        <li><a href="/collections/almacenamiento">💾 Almacenamiento SSD/HDD</a></li>
+        <li><a href="/collections/placas-madre">🔌 Placas Madre</a></li>
+        <li><a href="/collections/software">💿 Software</a></li>
+        <li><a href="/collections/perifericos">🖱️ Periféricos</a></li>
+        <li><a href="/collections/redes">📡 Redes</a></li>
+      </ul>
+    </div>
+
+    <!-- Información -->
+    <div>
+      <h3 class="footer-col-title">Información</h3>
+      <ul class="footer-links">
+        <li><a href="/pages/nosotros">Quiénes Somos</a></li>
+        <li><a href="/pages/envios">Política de Envíos</a></li>
+        <li><a href="/pages/garantia">Garantía y Devoluciones</a></li>
+        <li><a href="/pages/privacidad">Privacidad</a></li>
+        <li><a href="/pages/terminos">Términos y Condiciones</a></li>
+        <li><a href="/pages/soporte">Soporte Técnico</a></li>
+        {% if shop.customer_accounts_enabled %}
+          <li><a href="{{ routes.account_url }}">Mi Cuenta</a></li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <!-- Contacto -->
+    <div>
+      <h3 class="footer-col-title">Contacto</h3>
+      {% if section.settings.phone != blank %}
+        <div class="footer-contact-item">📞 <span>{{ section.settings.phone }}</span></div>
+      {% else %}
+        <div class="footer-contact-item">📞 <span>+52 (55) 1234-5678</span></div>
+      {% endif %}
+      {% if section.settings.email != blank %}
+        <div class="footer-contact-item">✉️ <span>{{ section.settings.email }}</span></div>
+      {% else %}
+        <div class="footer-contact-item">✉️ <span>ventas@redservcom.mx</span></div>
+      {% endif %}
+      {% if section.settings.address != blank %}
+        <div class="footer-contact-item">📍 <span>{{ section.settings.address }}</span></div>
+      {% endif %}
+      <div class="footer-contact-item" style="margin-top:12px;">
+        <span>🕐</span>
+        <div>
+          <div>Lunes – Viernes: 9am – 7pm</div>
+          <div>Sábado – Domingo: 10am – 5pm</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <div class="footer-copyright">
+      © {{ 'now' | date: '%Y' }} RED SERVCOM. Todos los derechos reservados.
+    </div>
+    <div class="footer-payments">
+      <span style="font-size:0.75rem;color:var(--color-text-muted);margin-right:8px;">Aceptamos:</span>
+      <span class="payment-icon">VISA</span>
+      <span class="payment-icon">MC</span>
+      <span class="payment-icon">AMEX</span>
+      <span class="payment-icon">OXXO</span>
+      <span class="payment-icon">SPEI</span>
+    </div>
+  </div>
+
+</footer>
+
+{% schema %}
+{
+  "name": "Pie de Página",
+  "settings": [
+    { "type": "textarea", "id": "about",     "label": "Descripción de la tienda" },
+    { "type": "text",     "id": "phone",     "label": "Teléfono",   "default": "+52 (55) 1234-5678" },
+    { "type": "text",     "id": "email",     "label": "Email",      "default": "ventas@redservcom.mx" },
+    { "type": "text",     "id": "address",   "label": "Dirección" },
+    { "type": "text",     "id": "whatsapp",  "label": "WhatsApp (solo número, ej: 5212345678)" },
+    { "type": "url",      "id": "facebook",  "label": "Facebook URL" },
+    { "type": "url",      "id": "instagram", "label": "Instagram URL" },
+    { "type": "url",      "id": "youtube",   "label": "YouTube URL" }
+  ]
+}
+{% endschema %}

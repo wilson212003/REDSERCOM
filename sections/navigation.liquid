@@ -1,0 +1,41 @@
+<nav class="main-nav" role="navigation" aria-label="Navegación principal">
+  <div class="nav-inner">
+
+    {% if section.settings.menu != blank %}
+      {% assign nav_menu = linklists[section.settings.menu] %}
+      {% for link in nav_menu.links %}
+        <a href="{{ link.url }}" class="nav-link {% if link.active %}active{% endif %}">
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    {% else %}
+      <a href="{{ routes.root_url }}" class="nav-link">🏠 Inicio</a>
+      <a href="/collections/procesadores" class="nav-link">⚡ Procesadores</a>
+      <a href="/collections/tarjetas-de-video" class="nav-link">🎮 Tarjetas de Video</a>
+      <a href="/collections/memorias-ram" class="nav-link">🧠 Memorias RAM</a>
+      <a href="/collections/almacenamiento" class="nav-link">💾 Almacenamiento</a>
+      <a href="/collections/placas-madre" class="nav-link">🔌 Placas Madre</a>
+      <a href="/collections/fuentes-de-poder" class="nav-link">🔋 Fuentes de Poder</a>
+      <a href="/collections/gabinetes" class="nav-link">📦 Gabinetes</a>
+      <a href="/collections/software" class="nav-link">💿 Software</a>
+      <a href="/collections/perifericos" class="nav-link">🖱️ Periféricos</a>
+      <a href="/collections/redes" class="nav-link">📡 Redes</a>
+      <a href="/pages/soporte" class="nav-link">🛠️ Soporte</a>
+    {% endif %}
+
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Navegación Principal",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menú de navegación",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

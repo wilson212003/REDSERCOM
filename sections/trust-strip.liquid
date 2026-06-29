@@ -1,0 +1,40 @@
+<div class="trust-strip">
+  <div class="trust-inner">
+    {% for i in (1..4) %}
+      {% assign icon_key = 'icon_' | append: i %}
+      {% assign text_key = 'text_' | append: i %}
+      {% assign sub_key  = 'sub_'  | append: i %}
+      <div class="trust-item">
+        <span class="trust-icon">{{ section.settings[icon_key] }}</span>
+        <div>
+          <span>{{ section.settings[text_key] }}</span><br>
+          <span style="font-size:0.75rem;color:var(--color-text-muted);">{{ section.settings[sub_key] }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banda de Confianza",
+  "settings": [
+    { "type": "text", "id": "icon_1", "label": "Ícono 1", "default": "🚚" },
+    { "type": "text", "id": "text_1", "label": "Texto 1", "default": "Envío Gratis" },
+    { "type": "text", "id": "sub_1",  "label": "Subtexto 1", "default": "En pedidos +$500 MXN" },
+
+    { "type": "text", "id": "icon_2", "label": "Ícono 2", "default": "🛡️" },
+    { "type": "text", "id": "text_2", "label": "Texto 2", "default": "Garantía Oficial" },
+    { "type": "text", "id": "sub_2",  "label": "Subtexto 2", "default": "Productos 100% originales" },
+
+    { "type": "text", "id": "icon_3", "label": "Ícono 3", "default": "💳" },
+    { "type": "text", "id": "text_3", "label": "Texto 3", "default": "Pago Seguro" },
+    { "type": "text", "id": "sub_3",  "label": "Subtexto 3", "default": "Visa, MasterCard, OXXO" },
+
+    { "type": "text", "id": "icon_4", "label": "Ícono 4", "default": "🛠️" },
+    { "type": "text", "id": "text_4", "label": "Texto 4", "default": "Soporte Técnico" },
+    { "type": "text", "id": "sub_4",  "label": "Subtexto 4", "default": "Lun–Dom, 9am–8pm" }
+  ],
+  "presets": [{ "name": "Banda de Confianza" }]
+}
+{% endschema %}

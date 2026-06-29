@@ -1,0 +1,170 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<div class="section">
+  <div class="section-inner">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" style="margin-bottom:28px;font-size:0.82rem;color:var(--color-text-muted);">
+      <a href="{{ routes.root_url }}" style="color:var(--color-text-muted);text-decoration:none;">Inicio</a>
+      <span style="margin:0 8px;">›</span>
+      {% if collection %}
+        <a href="{{ collection.url }}" style="color:var(--color-text-muted);text-decoration:none;">{{ collection.title }}</a>
+        <span style="margin:0 8px;">›</span>
+      {% endif %}
+      <span style="color:var(--color-text);">{{ product.title }}</span>
+    </nav>
+
+    <!-- Product layout -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="product-layout">
+
+      <!-- Imágenes -->
+      <div>
+        <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:16px;overflow:hidden;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;margin-bottom:16px;" id="main-image">
+          {% if product.featured_image %}
+            <img
+              src="{{ product.featured_image | img_url: '600x' }}"
+              alt="{{ product.featured_image.alt | default: product.title }}"
+              style="width:100%;height:100%;object-fit:contain;"
+              id="featured-img"
+            >
+          {% else %}
+            <span style="font-size:8rem;">💻</span>
+          {% endif %}
+        </div>
+
+        {% if product.images.size > 1 %}
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            {% for image in product.images %}
+              <button
+                onclick="document.getElementById('featured-img').src='{{ image | img_url: '600x' }}'"
+                style="border:2px solid var(--color-border);border-radius:8px;overflow:hidden;width:72px;height:72px;cursor:pointer;background:var(--color-bg-card);padding:4px;transition:border-color 0.2s;"
+                onmouseover="this.style.borderColor='var(--color-primary)'"
+                onmouseout="this.style.borderColor='var(--color-border)'"
+              >
+                <img src="{{ image | img_url: '120x' }}" alt="{{ image.alt }}" style="width:100%;height:100%;object-fit:contain;">
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Información -->
+      <div>
+        <div class="product-category">{{ product.type }}</div>
+        <h1 style="font-family:var(--font-heading);font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin:8px 0 16px;">{{ product.title }}</h1>
+
+        <!-- Rating -->
+        <div class="product-rating" style="margin-bottom:20px;">
+          <span class="stars">★★★★★</span>
+          <span class="rating-count">(Sé el primero en opinar)</span>
+        </div>
+
+        <!-- Precio -->
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:24px;">
+          <span id="product-price" style="font-size:2rem;font-weight:800;color:var(--color-text);">
+            {{ current_variant.price | money }}
+          </span>
+          {% if current_variant.compare_at_price > current_variant.price %}
+            <span style="font-size:1rem;color:var(--color-text-muted);text-decoration:line-through;" id="compare-price">
+              {{ current_variant.compare_at_price | money }}
+            </span>
+            <span style="background:var(--color-primary);color:#fff;font-size:0.75rem;font-weight:700;padding:4px 10px;border-radius:100px;">
+              -{{ current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price }}%
+            </span>
+          {% endif %}
+        </div>
+
+        <!-- Tags / Specs -->
+        {% if product.tags.size > 0 %}
+          <div class="product-specs" style="margin-bottom:24px;">
+            {% for tag in product.tags limit: 6 %}
+              <span class="spec-tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Variantes -->
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <div style="margin-bottom:20px;">
+              <label style="font-size:0.82rem;font-weight:700;color:var(--color-text-muted);display:block;margin-bottom:8px;letter-spacing:0.5px;text-transform:uppercase;">
+                {{ option.name }}
+              </label>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                {% for value in option.values %}
+                  <button
+                    class="spec-tag"
+                    style="cursor:pointer;padding:8px 16px;font-size:0.82rem;transition:all 0.2s;"
+                    onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.style.borderColor='var(--color-border)');this.style.borderColor='var(--color-primary)';"
+                  >
+                    {{ value }}
+                  </button>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        {% endunless %}
+
+        <!-- Cantidad + ATC -->
+        {% form 'product', product, id: 'product-form' %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}" id="variant-id">
+
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+            <div style="display:flex;align-items:center;background:var(--color-bg-surface);border:1px solid var(--color-border);border-radius:var(--radius);overflow:hidden;">
+              <button type="button" onclick="let q=document.getElementById('qty');if(q.value>1)q.value--;" style="background:none;border:none;color:var(--color-text);padding:10px 16px;cursor:pointer;font-size:1.1rem;">−</button>
+              <input type="number" name="quantity" id="qty" value="1" min="1" style="background:none;border:none;color:var(--color-text);text-align:center;width:50px;font-size:0.95rem;outline:none;font-weight:700;">
+              <button type="button" onclick="document.getElementById('qty').value=parseInt(document.getElementById('qty').value)+1" style="background:none;border:none;color:var(--color-text);padding:10px 16px;cursor:pointer;font-size:1.1rem;">+</button>
+            </div>
+
+            {% if current_variant.available %}
+              <button type="submit" name="add" class="btn-primary" style="flex:1;justify-content:center;">
+                🛒 Agregar al Carrito
+              </button>
+            {% else %}
+              <button type="button" class="btn-primary" disabled style="flex:1;justify-content:center;opacity:0.5;cursor:not-allowed;">
+                Agotado
+              </button>
+            {% endif %}
+          </div>
+        {% endform %}
+
+        <!-- Disponibilidad -->
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;font-size:0.85rem;">
+          {% if current_variant.available %}
+            <span style="width:8px;height:8px;background:var(--color-success);border-radius:50%;flex-shrink:0;"></span>
+            <span style="color:var(--color-success);font-weight:600;">En stock — listo para enviar</span>
+          {% else %}
+            <span style="width:8px;height:8px;background:#ef4444;border-radius:50%;flex-shrink:0;"></span>
+            <span style="color:#ef4444;font-weight:600;">Agotado temporalmente</span>
+          {% endif %}
+        </div>
+
+        <!-- Trust mini -->
+        <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--color-text-muted);">🚚 <span>Envío gratis en pedidos +$500 MXN</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--color-text-muted);">🛡️ <span>Garantía de fábrica incluida</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--color-text-muted);">🔄 <span>30 días para cambios y devoluciones</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--color-text-muted);">🛠️ <span>Soporte técnico especializado</span></div>
+        </div>
+
+        <!-- Descripción -->
+        {% if product.description != blank %}
+          <div style="margin-top:32px;border-top:1px solid var(--color-border);padding-top:24px;">
+            <h2 style="font-size:1rem;font-weight:700;margin-bottom:16px;">Descripción del Producto</h2>
+            <div style="color:var(--color-text-muted);font-size:0.88rem;line-height:1.8;">
+              {{ product.description }}
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    .product-layout { grid-template-columns: 1fr !important; gap: 24px !important; }
+  }
+</style>

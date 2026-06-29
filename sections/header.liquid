@@ -1,0 +1,82 @@
+<header class="site-header" role="banner">
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <a href="{{ routes.root_url }}" class="logo" aria-label="RED SERVCOM - Inicio">
+      {% if section.settings.logo != blank %}
+        <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ shop.name }}" height="42" loading="eager">
+      {% else %}
+        <div class="logo-icon">💻</div>
+        <div class="logo-text">
+          <span class="logo-name">RED SERVCOM</span>
+          <span class="logo-tagline">Hardware & Software</span>
+        </div>
+      {% endif %}
+    </a>
+
+    <!-- Búsqueda -->
+    <div class="header-search">
+      <form action="{{ routes.search_url }}" method="get" class="search-form" role="search">
+        <input
+          type="search"
+          name="q"
+          class="search-input"
+          placeholder="Buscar procesadores, tarjetas, software..."
+          value="{{ search.terms | escape }}"
+          aria-label="Buscar productos"
+        >
+        <button type="submit" class="search-btn" aria-label="Buscar">🔍</button>
+      </form>
+    </div>
+
+    <!-- Acciones -->
+    <div class="header-actions">
+
+      {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          <a href="{{ routes.account_url }}" class="header-btn">
+            👤 Mi Cuenta
+          </a>
+        {% else %}
+          <a href="{{ routes.account_login_url }}" class="header-btn">
+            👤 Ingresar
+          </a>
+        {% endif %}
+      {% endif %}
+
+      <a href="{{ routes.cart_url }}" class="header-btn cart-btn">
+        🛒 Carrito
+        <span class="cart-count" aria-label="artículos en el carrito">{{ cart.item_count }}</span>
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button class="header-btn nav-toggle" aria-label="Menú" aria-expanded="false" style="display:none">
+        ☰
+      </button>
+    </div>
+
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Encabezado",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo de la tienda"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Ancho del logo",
+      "default": 160
+    }
+  ]
+}
+{% endschema %}

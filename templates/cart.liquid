@@ -1,0 +1,111 @@
+{% if cart.item_count == 0 %}
+
+  <div class="section" style="text-align:center;padding:80px 24px;">
+    <div class="section-inner" style="max-width:500px;margin:0 auto;">
+      <div style="font-size:5rem;margin-bottom:20px;">🛒</div>
+      <h1 style="font-family:var(--font-heading);font-size:1.8rem;margin-bottom:12px;">Tu carrito está vacío</h1>
+      <p style="color:var(--color-text-muted);margin-bottom:32px;">Agrega productos para comenzar tu compra.</p>
+      <a href="{{ routes.root_url }}" class="btn-primary">Explorar Productos →</a>
+    </div>
+  </div>
+
+{% else %}
+
+  <div class="section">
+    <div class="section-inner">
+      <h1 style="font-family:var(--font-heading);font-size:1.8rem;font-weight:700;margin-bottom:32px;">
+        🛒 Mi Carrito <span style="color:var(--color-text-muted);font-size:1rem;">({{ cart.item_count }} artículo{{ cart.item_count | pluralize: '', 's' }})</span>
+      </h1>
+
+      {% form 'cart', cart %}
+
+        <div style="display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start;" class="cart-layout">
+
+          <!-- Items -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            {% for item in cart.items %}
+              <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:12px;padding:20px;display:flex;gap:20px;align-items:center;">
+
+                <a href="{{ item.url }}" style="flex-shrink:0;">
+                  {% if item.image %}
+                    <img src="{{ item.image | img_url: '120x' }}" alt="{{ item.title }}" style="width:80px;height:80px;object-fit:contain;border-radius:8px;background:var(--color-bg-surface);">
+                  {% else %}
+                    <div style="width:80px;height:80px;background:var(--color-bg-surface);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2rem;">💻</div>
+                  {% endif %}
+                </a>
+
+                <div style="flex:1;min-width:0;">
+                  <div class="product-category">{{ item.product.type }}</div>
+                  <a href="{{ item.url }}" style="font-weight:700;font-size:0.9rem;color:var(--color-text);text-decoration:none;display:block;margin-bottom:4px;">{{ item.product.title }}</a>
+                  {% unless item.variant.title == 'Default Title' %}
+                    <div style="font-size:0.78rem;color:var(--color-text-muted);margin-bottom:8px;">{{ item.variant.title }}</div>
+                  {% endunless %}
+                  <div style="font-weight:800;color:var(--color-text);">{{ item.final_line_price | money }}</div>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="display:flex;align-items:center;background:var(--color-bg-surface);border:1px solid var(--color-border);border-radius:6px;">
+                    <input
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      style="width:52px;background:none;border:none;color:var(--color-text);text-align:center;padding:8px;outline:none;font-weight:700;"
+                    >
+                  </div>
+                  <a href="{{ item.url_to_remove }}" style="color:var(--color-text-muted);text-decoration:none;font-size:1.1rem;padding:4px;" title="Eliminar">✕</a>
+                </div>
+
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- Resumen -->
+          <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:12px;padding:24px;position:sticky;top:90px;">
+            <h2 style="font-size:1rem;font-weight:700;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--color-border);">Resumen del Pedido</h2>
+
+            <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:0.88rem;color:var(--color-text-muted);">
+              <span>Subtotal</span>
+              <span style="color:var(--color-text);font-weight:600;">{{ cart.total_price | money }}</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:20px;font-size:0.88rem;color:var(--color-text-muted);">
+              <span>Envío</span>
+              <span style="color:var(--color-success);font-weight:600;">Calculado al pagar</span>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;margin-bottom:24px;padding-top:16px;border-top:1px solid var(--color-border);font-size:1.1rem;font-weight:800;">
+              <span>Total</span>
+              <span style="color:var(--color-primary);">{{ cart.total_price | money }}</span>
+            </div>
+
+            <button type="submit" name="checkout" class="btn-primary" style="width:100%;justify-content:center;font-size:1rem;">
+              🔒 Proceder al Pago
+            </button>
+
+            <div style="display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap;">
+              <span class="payment-icon">VISA</span>
+              <span class="payment-icon">MC</span>
+              <span class="payment-icon">AMEX</span>
+              <span class="payment-icon">OXXO</span>
+              <span class="payment-icon">SPEI</span>
+            </div>
+
+            <p style="text-align:center;font-size:0.75rem;color:var(--color-text-muted);margin-top:12px;">
+              🔒 Transacción segura y cifrada
+            </p>
+          </div>
+
+        </div>
+
+      {% endform %}
+
+    </div>
+  </div>
+
+  <style>
+    @media (max-width: 768px) {
+      .cart-layout { grid-template-columns: 1fr !important; }
+    }
+  </style>
+
+{% endif %}

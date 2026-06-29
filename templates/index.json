@@ -1,0 +1,80 @@
+{
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "show_bar": true,
+        "text": "<p>🚀 Envío GRATIS en compras mayores a $500 MXN &nbsp;|&nbsp; ☎️ Soporte técnico Lun–Dom &nbsp;|&nbsp; 🔒 Compra 100% segura</p>"
+      }
+    },
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "badge": "Tecnología de Vanguardia",
+        "heading": "Tu tienda de",
+        "heading_highlight": "Hardware & Software",
+        "heading_end": "de confianza",
+        "subheading": "Encuentra los mejores componentes de computadora, software original y hardware especializado. Precios competitivos, asesoría experta y envío rápido a todo el país.",
+        "cta_text": "Ver Productos",
+        "cta2_text": "🛠️ Soporte Técnico"
+      }
+    },
+    "trust-strip": {
+      "type": "trust-strip",
+      "settings": {
+        "icon_1": "🚚", "text_1": "Envío Gratis", "sub_1": "En pedidos +$500 MXN",
+        "icon_2": "🛡️", "text_2": "Garantía Oficial", "sub_2": "Productos 100% originales",
+        "icon_3": "💳", "text_3": "Pago Seguro", "sub_3": "Visa, MasterCard, OXXO, SPEI",
+        "icon_4": "🛠️", "text_4": "Soporte Técnico", "sub_4": "Lun–Dom, 9am–8pm"
+      }
+    },
+    "categories": {
+      "type": "categories",
+      "settings": {
+        "label": "Explora por categoría",
+        "title": "Categorías Principales"
+      }
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "label": "Lo más buscado",
+        "title": "Productos Destacados",
+        "products_count": 4
+      }
+    },
+    "promo-banner": {
+      "type": "promo-banner",
+      "settings": {
+        "badge": "🔥 OFERTA ESPECIAL",
+        "title": "<p>Hasta 30% OFF en componentes seleccionados</p>",
+        "desc": "Armá tu PC gaming o workstation al mejor precio. Válido hasta agotar existencias.",
+        "cta": "Ver Ofertas"
+      }
+    },
+    "features": {
+      "type": "features",
+      "settings": {
+        "label": "¿Por qué elegirnos?",
+        "title": "Tu aliado en tecnología"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "label": "Mantente al día",
+        "title": "Suscríbete y recibe ofertas exclusivas",
+        "button": "Suscribirme"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust-strip",
+    "categories",
+    "featured-products",
+    "promo-banner",
+    "features",
+    "newsletter"
+  ]
+}

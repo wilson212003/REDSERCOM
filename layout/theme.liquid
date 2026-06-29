@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ page_description | default: 'RED SERVCOM — Especialistas en componentes de computadora, hardware y software. Los mejores precios en tecnología.' }}">
+
+  <title>{% if page_title == blank %}RED SERVCOM | Hardware, Software & Componentes{% else %}{{ page_title }} | RED SERVCOM{% endif %}</title>
+
+  <!-- Favicons -->
+  {% if settings.favicon != blank %}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+  {% endif %}
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Theme CSS -->
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  {{ content_for_header }}
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  {% section 'announcement-bar' %}
+
+  <!-- ── HEADER ── -->
+  {% section 'header' %}
+
+  <!-- ── NAVIGATION ── -->
+  {% section 'navigation' %}
+
+  <!-- ── MAIN CONTENT ── -->
+  <main id="main-content" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  <!-- ── FOOTER ── -->
+  {% section 'footer' %}
+
+  <!-- Theme JS -->
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+</body>
+</html>
