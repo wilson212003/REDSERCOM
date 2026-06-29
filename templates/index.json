@@ -1,12 +1,5 @@
 {
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "settings": {
-        "show_bar": true,
-        "text": "<p>🚀 Envío GRATIS en compras mayores a $500 MXN &nbsp;|&nbsp; ☎️ Soporte técnico Lun–Dom &nbsp;|&nbsp; 🔒 Compra 100% segura</p>"
-      }
-    },
     "hero": {
       "type": "hero",
       "settings": {
@@ -22,10 +15,16 @@
     "trust-strip": {
       "type": "trust-strip",
       "settings": {
-        "icon_1": "🚚", "text_1": "Envío Gratis", "sub_1": "En pedidos +$500 MXN",
+        "icon_1": "🚚", "text_1": "Envío Gratis",     "sub_1": "En pedidos +$500 MXN",
         "icon_2": "🛡️", "text_2": "Garantía Oficial", "sub_2": "Productos 100% originales",
-        "icon_3": "💳", "text_3": "Pago Seguro", "sub_3": "Visa, MasterCard, OXXO, SPEI",
-        "icon_4": "🛠️", "text_4": "Soporte Técnico", "sub_4": "Lun–Dom, 9am–8pm"
+        "icon_3": "💳", "text_3": "Pago Seguro",       "sub_3": "Visa, MasterCard, OXXO, SPEI",
+        "icon_4": "🛠️", "text_4": "Soporte Técnico",  "sub_4": "Lun–Dom, 9am–8pm"
+      }
+    },
+    "brands": {
+      "type": "brands",
+      "settings": {
+        "label": "Marcas que manejamos"
       }
     },
     "categories": {
@@ -52,6 +51,24 @@
         "cta": "Ver Ofertas"
       }
     },
+    "stats": {
+      "type": "stats",
+      "settings": {
+        "label": "Nuestra trayectoria",
+        "title": "Números que nos respaldan",
+        "stat1_icon": "👥", "stat1_num": "+5,000", "stat1_label": "Clientes satisfechos",
+        "stat2_icon": "📦", "stat2_num": "+3,000", "stat2_label": "Productos en catálogo",
+        "stat3_icon": "⭐", "stat3_num": "4.9/5",  "stat3_label": "Calificación promedio",
+        "stat4_icon": "🏆", "stat4_num": "+8 años","stat4_label": "De experiencia"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "label": "Lo que dicen nuestros clientes",
+        "title": "Testimonios reales"
+      }
+    },
     "features": {
       "type": "features",
       "settings": {
@@ -71,9 +88,12 @@
   "order": [
     "hero",
     "trust-strip",
+    "brands",
     "categories",
     "featured-products",
     "promo-banner",
+    "stats",
+    "testimonials",
     "features",
     "newsletter"
   ]

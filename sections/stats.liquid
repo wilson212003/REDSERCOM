@@ -1,0 +1,62 @@
+<section style="background:linear-gradient(135deg,#05080f 0%,#0d1526 100%);padding:64px 24px;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
+  <div style="max-width:1400px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="section-label" style="display:block;">{{ section.settings.label | default: 'Nuestra trayectoria' }}</div>
+      <h2 class="section-title">{{ section.settings.title | default: 'Números que nos respaldan' }}</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2px;background:var(--color-border);border-radius:16px;overflow:hidden;">
+
+      {% assign stat_nums   = section.settings.stat1_num   | default: '+5,000' %}
+      {% assign stat_labels = section.settings.stat1_label | default: 'Clientes satisfechos' %}
+
+      {% assign stats = '0,1,2,3' | split: ',' %}
+      {% for i in stats %}
+        {% assign n_key = 'stat' | append: forloop.index | append: '_num' %}
+        {% assign l_key = 'stat' | append: forloop.index | append: '_label' %}
+        {% assign ic_key = 'stat' | append: forloop.index | append: '_icon' %}
+
+        {% assign s_num   = section.settings[n_key] %}
+        {% assign s_label = section.settings[l_key] %}
+        {% assign s_icon  = section.settings[ic_key] %}
+
+        {% unless s_num == blank %}
+        <div style="background:var(--color-bg-card);padding:40px 24px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">{{ s_icon }}</div>
+          <div style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:var(--color-primary);line-height:1;margin-bottom:8px;">{{ s_num }}</div>
+          <div style="font-size:0.82rem;color:var(--color-text-muted);font-weight:600;letter-spacing:0.3px;">{{ s_label }}</div>
+        </div>
+        {% endunless %}
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Estadísticas",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Etiqueta", "default": "Nuestra trayectoria" },
+    { "type": "text", "id": "title", "label": "Título",   "default": "Números que nos respaldan" },
+
+    { "type": "text", "id": "stat1_icon",  "label": "Ícono 1",  "default": "👥" },
+    { "type": "text", "id": "stat1_num",   "label": "Número 1", "default": "+5,000" },
+    { "type": "text", "id": "stat1_label", "label": "Label 1",  "default": "Clientes satisfechos" },
+
+    { "type": "text", "id": "stat2_icon",  "label": "Ícono 2",  "default": "📦" },
+    { "type": "text", "id": "stat2_num",   "label": "Número 2", "default": "+3,000" },
+    { "type": "text", "id": "stat2_label", "label": "Label 2",  "default": "Productos en catálogo" },
+
+    { "type": "text", "id": "stat3_icon",  "label": "Ícono 3",  "default": "⭐" },
+    { "type": "text", "id": "stat3_num",   "label": "Número 3", "default": "4.9/5" },
+    { "type": "text", "id": "stat3_label", "label": "Label 3",  "default": "Calificación promedio" },
+
+    { "type": "text", "id": "stat4_icon",  "label": "Ícono 4",  "default": "🏆" },
+    { "type": "text", "id": "stat4_num",   "label": "Número 4", "default": "+8 años" },
+    { "type": "text", "id": "stat4_label", "label": "Label 4",  "default": "De experiencia" }
+  ],
+  "presets": [{ "name": "Estadísticas" }]
+}
+{% endschema %}
