@@ -9,7 +9,7 @@
     <span class="product-badge" style="background:#666;">Agotado</span>
   {% elsif on_sale %}
     <span class="product-badge sale">Sale</span>
-  {% elsif product.created_at > 'now' | date: '%s' | minus: 2592000 | date: '%Y-%m-%dT%H:%M:%SZ' %}
+  {% elsif product.tags contains 'nuevo' or product.tags contains 'new' %}
     <span class="product-badge new">Nuevo</span>
   {% endif %}
 

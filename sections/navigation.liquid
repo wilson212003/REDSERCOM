@@ -9,18 +9,19 @@
         </a>
       {% endfor %}
     {% else %}
+      {% assign all_url = routes.all_products_collection_url %}
       <a href="{{ routes.root_url }}" class="nav-link">🏠 Inicio</a>
-      <a href="/collections/procesadores" class="nav-link">⚡ Procesadores</a>
-      <a href="/collections/tarjetas-de-video" class="nav-link">🎮 Tarjetas de Video</a>
-      <a href="/collections/memorias-ram" class="nav-link">🧠 Memorias RAM</a>
-      <a href="/collections/almacenamiento" class="nav-link">💾 Almacenamiento</a>
-      <a href="/collections/placas-madre" class="nav-link">🔌 Placas Madre</a>
-      <a href="/collections/fuentes-de-poder" class="nav-link">🔋 Fuentes de Poder</a>
-      <a href="/collections/gabinetes" class="nav-link">📦 Gabinetes</a>
-      <a href="/collections/software" class="nav-link">💿 Software</a>
-      <a href="/collections/perifericos" class="nav-link">🖱️ Periféricos</a>
-      <a href="/collections/redes" class="nav-link">📡 Redes</a>
-      <a href="/pages/soporte" class="nav-link">🛠️ Soporte</a>
+      {% assign cats = 'procesadores,tarjetas-de-video,memorias-ram,almacenamiento,placas-madre,fuentes-de-poder,gabinetes,software,perifericos,redes' | split: ',' %}
+      {% assign labels = '⚡ Procesadores,🎮 Tarjetas de Video,🧠 Memorias RAM,💾 Almacenamiento,🔌 Placas Madre,🔋 Fuentes de Poder,📦 Gabinetes,💿 Software,🖱️ Periféricos,📡 Redes' | split: ',' %}
+      {% for cat in cats %}
+        {% assign col = collections[cat] %}
+        {% if col != blank %}
+          <a href="{{ col.url }}" class="nav-link">{{ labels[forloop.index0] }}</a>
+        {% else %}
+          <a href="{{ all_url }}" class="nav-link">{{ labels[forloop.index0] }}</a>
+        {% endif %}
+      {% endfor %}
+      <a href="{{ routes.root_url }}pages/soporte" class="nav-link">🛠️ Soporte</a>
     {% endif %}
 
   </div>

@@ -1,0 +1,31 @@
+<div class="section" style="min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 24px;">
+  <div style="max-width:480px;">
+
+    <div style="font-size:5rem;margin-bottom:16px;line-height:1;">⚠️</div>
+
+    <div class="section-label" style="justify-content:center;display:flex;">Error 404</div>
+    <h1 style="font-family:var(--font-heading);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;margin:12px 0 16px;">
+      Página no encontrada
+    </h1>
+    <p style="color:var(--color-text-muted);font-size:0.95rem;line-height:1.8;margin-bottom:36px;">
+      La página que buscas no existe o fue movida.<br>
+      Prueba buscar el producto o vuelve al inicio.
+    </p>
+
+    <form action="{{ routes.search_url }}" method="get" class="search-form" style="max-width:360px;margin:0 auto 24px;">
+      <input
+        type="search"
+        name="q"
+        class="search-input"
+        placeholder="Buscar productos..."
+        aria-label="Buscar"
+      >
+      <button type="submit" class="search-btn">🔍</button>
+    </form>
+
+    <a href="{{ routes.root_url }}" class="btn-primary" style="display:inline-flex;">
+      ← Volver al Inicio
+    </a>
+
+  </div>
+</div>

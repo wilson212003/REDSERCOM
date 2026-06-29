@@ -16,52 +16,19 @@
           <div class="category-count">{{ block.settings.count }}</div>
         </a>
       {% else %}
-        <!-- Default categories -->
-        <a href="/collections/procesadores" class="category-card">
-          <div class="category-icon">⚡</div>
-          <div class="category-name">Procesadores</div>
-          <div class="category-count">Intel & AMD</div>
-        </a>
-        <a href="/collections/tarjetas-de-video" class="category-card">
-          <div class="category-icon">🎮</div>
-          <div class="category-name">Tarjetas de Video</div>
-          <div class="category-count">NVIDIA & AMD</div>
-        </a>
-        <a href="/collections/memorias-ram" class="category-card">
-          <div class="category-icon">🧠</div>
-          <div class="category-name">Memorias RAM</div>
-          <div class="category-count">DDR4 & DDR5</div>
-        </a>
-        <a href="/collections/almacenamiento" class="category-card">
-          <div class="category-icon">💾</div>
-          <div class="category-name">Almacenamiento</div>
-          <div class="category-count">SSD & HDD</div>
-        </a>
-        <a href="/collections/placas-madre" class="category-card">
-          <div class="category-icon">🔌</div>
-          <div class="category-name">Placas Madre</div>
-          <div class="category-count">AM5 & LGA</div>
-        </a>
-        <a href="/collections/fuentes-poder" class="category-card">
-          <div class="category-icon">🔋</div>
-          <div class="category-name">Fuentes de Poder</div>
-          <div class="category-count">80 Plus</div>
-        </a>
-        <a href="/collections/software" class="category-card">
-          <div class="category-icon">💿</div>
-          <div class="category-name">Software</div>
-          <div class="category-count">Licencias originales</div>
-        </a>
-        <a href="/collections/perifericos" class="category-card">
-          <div class="category-icon">🖱️</div>
-          <div class="category-name">Periféricos</div>
-          <div class="category-count">Mouse, Teclado, Monitor</div>
-        </a>
-        <a href="/collections/redes" class="category-card">
-          <div class="category-icon">📡</div>
-          <div class="category-name">Redes</div>
-          <div class="category-count">Routers & Switches</div>
-        </a>
+        {% assign default_cats = 'procesadores,tarjetas-de-video,memorias-ram,almacenamiento,placas-madre,fuentes-de-poder,software,perifericos,redes' | split: ',' %}
+        {% assign default_icons = '⚡,🎮,🧠,💾,🔌,🔋,💿,🖱️,📡' | split: ',' %}
+        {% assign default_names = 'Procesadores,Tarjetas de Video,Memorias RAM,Almacenamiento,Placas Madre,Fuentes de Poder,Software,Periféricos,Redes' | split: ',' %}
+        {% assign default_subs  = 'Intel & AMD,NVIDIA & AMD,DDR4 & DDR5,SSD & HDD,AM5 & LGA,80 Plus,Licencias originales,Mouse & Teclado,Routers & Switches' | split: ',' %}
+        {% for handle in default_cats %}
+          {% assign col = collections[handle] %}
+          {% assign col_url = col.url | default: routes.all_products_collection_url %}
+          <a href="{{ col_url }}" class="category-card">
+            <div class="category-icon">{{ default_icons[forloop.index0] }}</div>
+            <div class="category-name">{{ default_names[forloop.index0] }}</div>
+            <div class="category-count">{{ default_subs[forloop.index0] }}</div>
+          </a>
+        {% endfor %}
       {% endfor %}
     </div>
 
