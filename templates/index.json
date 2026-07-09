@@ -54,16 +54,6 @@
         "title": "Categorías Principales"
       }
     },
-    "promo-banner": {
-      "type": "promo-banner",
-      "settings": {
-        "badge": "🔥 OFERTA ESPECIAL",
-        "title": "<p>Hasta 30% OFF en componentes seleccionados</p>",
-        "desc": "Armá tu PC gaming o workstation al mejor precio. Válido hasta agotar existencias.",
-        "cta": "Ver Ofertas",
-        "url": ""
-      }
-    },
     "stats": {
       "type": "stats",
       "settings": {
@@ -113,7 +103,6 @@
     "trust-strip",
     "brands",
     "categories",
-    "promo-banner",
     "stats",
     "testimonials",
     "features",
