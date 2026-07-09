@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_primary": "#e63946",
@@ -7,6 +16,42 @@
     "social_whatsapp": "",
     "social_facebook": "",
     "social_instagram": "",
-    "social_youtube": ""
+    "social_youtube": "",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "show_bar": true,
+          "text": "<p>🚀 Envío GRATIS en compras mayores a S/50 | ☎️ Soporte técnico 7 días | 🔒 Compra 100% segura</p>",
+          "bg_color": "#e63946"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_width": 160
+        }
+      },
+      "navigation": {
+        "type": "navigation",
+        "settings": {
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "about": "",
+          "phone": "999194385",
+          "email": "ventas@redservcom.mx",
+          "address": "Av. Alfredo Benavides 3082, Miraflores 15048",
+          "whatsapp": "",
+          "facebook": "",
+          "instagram": "",
+          "youtube": ""
+        }
+      }
+    },
+    "content_for_index": []
   }
 }

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -9,16 +18,26 @@
         "heading_end": "de confianza",
         "subheading": "Encuentra los mejores componentes de computadora, software original y hardware especializado. Precios competitivos, asesoría experta y envío rápido a todo el país.",
         "cta_text": "Ver Productos",
-        "cta2_text": "🛠️ Soporte Técnico"
+        "cta_url": "",
+        "cta2_text": "🛠️ Soporte Técnico",
+        "cta2_url": ""
       }
     },
     "trust-strip": {
       "type": "trust-strip",
       "settings": {
-        "icon_1": "🚚", "text_1": "Envío Gratis",     "sub_1": "En pedidos +S/50",
-        "icon_2": "🛡️", "text_2": "Garantía Oficial", "sub_2": "Productos 100% originales",
-        "icon_3": "💳", "text_3": "Pago Seguro",       "sub_3": "Visa, MasterCard, OXXO, SPEI",
-        "icon_4": "🛠️", "text_4": "Soporte Técnico",  "sub_4": "Lun–Dom, 9am–8pm"
+        "icon_1": "🚚",
+        "text_1": "Envío Gratis",
+        "sub_1": "En pedidos +S/50",
+        "icon_2": "🛡️",
+        "text_2": "Garantía Oficial",
+        "sub_2": "Productos 100% originales",
+        "icon_3": "💳",
+        "text_3": "Pago Seguro",
+        "sub_3": "Visa, MasterCard, OXXO, SPEI",
+        "icon_4": "🛠️",
+        "text_4": "Soporte Técnico",
+        "sub_4": "Lun–Dom, 9am–8pm"
       }
     },
     "brands": {
@@ -29,17 +48,10 @@
     },
     "categories": {
       "type": "categories",
+      "disabled": true,
       "settings": {
         "label": "Explora por categoría",
         "title": "Categorías Principales"
-      }
-    },
-    "featured-products": {
-      "type": "featured-products",
-      "settings": {
-        "label": "Lo más buscado",
-        "title": "Productos Destacados",
-        "products_count": 4
       }
     },
     "promo-banner": {
@@ -48,7 +60,8 @@
         "badge": "🔥 OFERTA ESPECIAL",
         "title": "<p>Hasta 30% OFF en componentes seleccionados</p>",
         "desc": "Armá tu PC gaming o workstation al mejor precio. Válido hasta agotar existencias.",
-        "cta": "Ver Ofertas"
+        "cta": "Ver Ofertas",
+        "url": ""
       }
     },
     "stats": {
@@ -56,10 +69,18 @@
       "settings": {
         "label": "Nuestra trayectoria",
         "title": "Números que nos respaldan",
-        "stat1_icon": "👥", "stat1_num": "+5,000", "stat1_label": "Clientes satisfechos",
-        "stat2_icon": "📦", "stat2_num": "+3,000", "stat2_label": "Productos en catálogo",
-        "stat3_icon": "⭐", "stat3_num": "4.9/5",  "stat3_label": "Calificación promedio",
-        "stat4_icon": "🏆", "stat4_num": "+8 años","stat4_label": "De experiencia"
+        "stat1_icon": "👥",
+        "stat1_num": "+5,000",
+        "stat1_label": "Clientes satisfechos",
+        "stat2_icon": "📦",
+        "stat2_num": "+3,000",
+        "stat2_label": "Productos en catálogo",
+        "stat3_icon": "⭐",
+        "stat3_num": "4.9/5",
+        "stat3_label": "Calificación promedio",
+        "stat4_icon": "🏆",
+        "stat4_num": "+8 años",
+        "stat4_label": "De experiencia"
       }
     },
     "testimonials": {
@@ -81,6 +102,8 @@
       "settings": {
         "label": "Mantente al día",
         "title": "Suscríbete y recibe ofertas exclusivas",
+        "desc": "Sé el primero en conocer nuevos productos, promociones y lanzamientos.",
+        "placeholder": "tu@correo.com",
         "button": "Suscribirme"
       }
     }
@@ -90,7 +113,6 @@
     "trust-strip",
     "brands",
     "categories",
-    "featured-products",
     "promo-banner",
     "stats",
     "testimonials",
